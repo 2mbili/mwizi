@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://sprites/moon_background.png" type="Texture" id=1]
+[ext_resource path="res://sprites/cloudes.png" type="Texture" id=2]
+[ext_resource path="res://sprites/back_three.png" type="Texture" id=3]
+[ext_resource path="res://sprites/back_two.png" type="Texture" id=4]
+[ext_resource path="res://sprites/back_one.png" type="Texture" id=5]
+
+[node name="Node" type="Node"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = true
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground"]
+
+texture = ExtResource( 1 )
+centered = false
+
+[node name="four" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.001, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 512, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/four"]
+
+texture = ExtResource( 2 )
+centered = false
+
+[node name="three" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.005, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 979.2, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/three"]
+
+transform/scale = Vector2( 1.7, 0.56 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="two" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 979.2, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/two"]
+
+transform/scale = Vector2( 1.7, 0.56 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="one" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.8, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 979.2, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/one"]
+
+transform/pos = Vector2( -0.790565, -0.487671 )
+transform/scale = Vector2( 1.7, 0.56 )
+texture = ExtResource( 5 )
+centered = false
+
+

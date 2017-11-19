@@ -1,0 +1,229 @@
+[gd_scene load_steps=16 format=1]
+
+[ext_resource path="res://scripts/main_menu_cam.gd" type="Script" id=1]
+[ext_resource path="res://activities/splash_screen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://extra/title.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://sprites/buttons/backbutton.png" type="Texture" id=4]
+[ext_resource path="res://sprites/buttons/backbuttonpressed.png" type="Texture" id=5]
+[ext_resource path="res://sprites/buttons/settingbutton.png" type="Texture" id=6]
+[ext_resource path="res://sprites/buttons/settingbuttonpressed.png" type="Texture" id=7]
+[ext_resource path="res://sprites/buttons/highscorebutton.png" type="Texture" id=8]
+[ext_resource path="res://sprites/buttons/highscorebuttonpressed.png" type="Texture" id=9]
+[ext_resource path="res://sprites/buttons/left.png" type="Texture" id=10]
+
+[sub_resource type="GDScript" id=1]
+
+resource/name = "play_game"
+script/source = "extends TouchScreenButton\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\tconnect(\"pressed\",self,\"on_pressed\")\n\tpass\n\nfunc on_pressed():\n\t#get_tree().change_scene(\"res://activities/game.tscn\")\n\ttransition.change_stage(\"res://activities/game.tscn\")\n\tpass\n"
+
+[sub_resource type="GDScript" id=2]
+
+resource/name = "show_settings"
+script/source = "extends TouchScreenButton\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\tconnect(\"pressed\",self,\"on_pressed\")\n\tpass\n\nfunc on_pressed():\n\tget_node(\"setting\").play(\"show_setting\")\n\tpass\n"
+
+[sub_resource type="Animation" id=3]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:rect/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( 512, 0 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../setting:rect/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( -512, 0 ), Vector2( 0, 0 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../help:rect/pos")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 512, 0 ), Vector2( 1024, 0 ) ] }
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends TouchScreenButton\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\tconnect(\"pressed\",self,\"on_pressed\")\n\tpass\n\nfunc on_pressed():\n\tget_node(\"back_to_settings\").play(\"back_to_settings\")\n\tpass"
+
+[sub_resource type="Animation" id=5]
+
+length = 0.3
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../play:rect/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 512, 0 ), Vector2( 0, 0 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:rect/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -512, 0 ) ] }
+
+[node name="main_menu" type="Node"]
+
+[node name="cam" type="Camera2D" parent="."]
+
+transform/pos = Vector2( -1122.47, -113.299 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+script/script = ExtResource( 1 )
+
+[node name="Node" parent="." instance=ExtResource( 2 )]
+
+editor/display_folded = true
+
+[node name="main_menu" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="play" type="Container" parent="main_menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 512.0
+margin/bottom = 288.0
+
+[node name="Label" type="Label" parent="main_menu/play"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 161.0
+margin/top = 39.0
+margin/right = 348.0
+margin/bottom = 99.0
+custom_fonts/font = ExtResource( 3 )
+text = "Mwizi!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="play" type="TouchScreenButton" parent="main_menu/play"]
+
+transform/pos = Vector2( 279.447, 118.3 )
+transform/scale = Vector2( -1, 1 )
+normal = ExtResource( 4 )
+pressed = ExtResource( 5 )
+bitmask = null
+passby_press = false
+action = ""
+visibility_mode = 0
+script/script = SubResource( 1 )
+
+[node name="setting" type="TouchScreenButton" parent="main_menu/play"]
+
+transform/pos = Vector2( 193.061, 227.842 )
+transform/scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 6 )
+pressed = ExtResource( 7 )
+bitmask = null
+passby_press = false
+action = ""
+visibility_mode = 0
+script/script = SubResource( 2 )
+
+[node name="setting" type="AnimationPlayer" parent="main_menu/play/setting"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/show_setting = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="help" type="TouchScreenButton" parent="main_menu/play"]
+
+transform/pos = Vector2( 278.799, 228.985 )
+transform/scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 8 )
+pressed = ExtResource( 9 )
+bitmask = null
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="help" type="AnimationPlayer" parent="main_menu/play/help"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="setting" type="Container" parent="main_menu"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -512.0
+margin/top = 0.0
+margin/right = -3.0
+margin/bottom = 284.0
+
+[node name="back_to_settings" type="TouchScreenButton" parent="main_menu/setting"]
+
+transform/pos = Vector2( 498.467, 117.065 )
+transform/scale = Vector2( -1, 1 )
+normal = ExtResource( 10 )
+pressed = null
+bitmask = null
+passby_press = false
+action = ""
+visibility_mode = 0
+script/script = SubResource( 4 )
+
+[node name="back_to_settings" type="AnimationPlayer" parent="main_menu/setting/back_to_settings"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/back_to_settings = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="help" type="Container" parent="main_menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 512.0
+margin/top = 0.0
+margin/right = 1025.0
+margin/bottom = 284.0
+
+
+[editable path="Node"]
